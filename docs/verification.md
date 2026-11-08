@@ -36,6 +36,14 @@ Python 3.15.0のテストは15件、Node.js 26.12.1のテストは3件。生成�
 
 ## 公開直後に解消した反例
 
-skills CLI 1.7.6では短縮形の `owner/repo@v1.0.0` がタグではなくスキル名として解釈され、参照先がmainになった。公開タグを持つ完全な `/tree/v1.0.0/skills/japanese-web-design` URLでは、返されたrefがv1.0.0になり、導入が成功した。案内をこのURL形式へ変更し、v1.0.1で修正する。タグや旧ZIPは上書きしていない。
+skills CLI 1.7.6では短縮形の `owner/repo@v1.0.0` がタグではなくスキル名として解釈され、参照先がmainになった。公開タグを持つ完全な `/tree/v1.0.0/skills/japanese-web-design` URLでは、返されたrefがv1.0.0になり、導入が成功した。案内をこのURL形式へ変更し、v1.0.1で修正した。タグや旧ZIPは上書きしていない。
 
 公開サイトはChrome、curl、アプリ名を明示したUser-Agentで200になった。Python urllibの既定User-AgentではCloudflareの1010が返ったため、HTTP検証は用途を示すアプリ名を送る。Cloudflareの保護設定は変更していない。
+
+## 公開後の照合
+
+v1.0.1の公開タグから、skills CLI 1.7.6でCodexとClaude Codeへ導入し、それぞれ14ファイルが配布元と一致した。ガイド本体、CSS、JavaScript、カタログ、llms.txt、sitemap、ZIP、SHA-256は200、存在しないURLは404だった。公開カタログは元データと一致し、GitHub ReleaseとWeb配信のZIPも同じバイト列だった。
+
+ZIPのSHA-256は `812a52dce3261dc0597b7279cf60d21ab23ed171e233cf63abe6327453a043f2`。Workerの公開バージョンは `4c16e449-a6ac-4f8f-887a-22b9c2a82fb8`。CSP、nosniff、Referrer-Policy、フレームの制限を確認した。[公開CI](https://github.com/sakimyto/japanese-web-design/actions/runs/42439486851)も成功している。
+
+本番Chromeでv1.0.1、64項目、タグを固定した導入URLとコピーの成功を読み戻し、エラー・警告は0件だった。値をまとめた記録は [release-evidence.json](release-evidence.json) にある。

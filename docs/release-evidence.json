@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-11-08",
+  "version": "1.0.1",
+  "sourceCommit": "65d16229342c037fe318f5c78f16c1fe331ea6cc",
+  "publicCi": "https://github.com/sakimyto/japanese-web-design/actions/runs/42439486851",
+  "pythonTests": 15,
+  "nodeTests": 3,
+  "invalidFieldVariants": 1280,
+  "searchCombinations": 1152,
+  "responsiveWidths": [320, 375, 768, 1280],
+  "install": {
+    "version": "1.0.1",
+    "cli": "1.7.6",
+    "ref": "v1.0.1",
+    "agents": ["codex", "claude-code"],
+    "files": 14,
+    "exactMatch": true
+  },
+  "deployment": {
+    "origin": "https://japanese-design.sakimyto.com",
+    "version": "1.0.1",
+    "workerVersion": "4c16e449-a6ac-4f8f-887a-22b9c2a82fb8",
+    "results": [
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 133431,
+        "securityHeaders": true
+      },
+      {
+        "path": "/app.js",
+        "status": 200,
+        "bytes": 2753
+      },
+      {
+        "path": "/style.css",
+        "status": 200,
+        "bytes": 11799
+      },
+      {
+        "path": "/catalog.json",
+        "status": 200,
+        "bytes": 70654
+      },
+      {
+        "path": "/llms.txt",
+        "status": 200,
+        "bytes": 757
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "bytes": 168
+      },
+      {
+        "path": "/japanese-web-design-1.0.1.zip",
+        "status": 200,
+        "bytes": 87873,
+        "sha256": "812a52dce3261dc0597b7279cf60d21ab23ed171e233cf63abe6327453a043f2"
+      },
+      {
+        "path": "/japanese-web-design-1.0.1.zip.sha256",
+        "status": 200,
+        "bytes": 96
+      },
+      {
+        "path": "/not-a-page",
+        "status": 404,
+        "bytes": 1732
+      },
+      {
+        "path": "GitHub release ZIP",
+        "status": 200,
+        "sha256": "812a52dce3261dc0597b7279cf60d21ab23ed171e233cf63abe6327453a043f2"
+      }
+    ]
+  }
+}
