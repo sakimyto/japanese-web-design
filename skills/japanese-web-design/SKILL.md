@@ -3,7 +3,7 @@ name: japanese-web-design
 description: 日本語のWebサイトやUIを制作・改善・レビューするとき、既存のデザイン方針に和文の組版、和欧混植、情報密度、UI文言、IME入力の判断を加える。日本語の実文で見た目と使いやすさを調整する補助スキル。
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # 日本語Webデザイン補助

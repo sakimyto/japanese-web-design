@@ -4,14 +4,14 @@
 
 和欧混植、見出しの改行、文字の密度、UI文言、日本語入力を扱うAgent Skillです。frontend-designなどの既存スキルと併用し、ブランドや構成を保ちながら日本語の実文で調整します。
 
-[Webガイド](https://japanese-design.sakimyto.com/) · [v1.0.0のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.0) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
+[Webガイド](https://japanese-design.sakimyto.com/) · [v1.0.1のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.1) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
 
 ## 導入
 
 [skills CLI](https://github.com/vercel-labs/skills)で、プロジェクトのディレクトリから追加します。Node.jsの条件はCLIの公式資料で確認してください。
 
 ```sh
-npx skills add sakimyto/japanese-web-design@v1.0.0 --skill japanese-web-design
+npx skills add https://github.com/sakimyto/japanese-web-design/tree/v1.0.1/skills/japanese-web-design --skill japanese-web-design
 ```
 
 導入するエージェントを選びます。Codexへ指定する場合は `--agent codex`、Claude Codeへ指定する場合は `--agent claude-code` を付けられます。同名のスキルがある場合は、更新前に内容を確認してください。グローバル導入は必要なときだけ選びます。

@@ -116,7 +116,7 @@ class ArchiveTests(unittest.TestCase):
 
     def test_version_mismatch_is_rejected(self):
         skill = self.root / 'SKILL.md'
-        skill.write_text(skill.read_text().replace('version: "1.0.0"', 'version: "0.0.0"'))
+        skill.write_text(skill.read_text().replace(f'version: "{self.data["version"]}"', 'version: "0.0.0"'))
         with self.assertRaisesRegex(ValueError, 'metadata does not match'):
             PACKAGE.archive(self.data, self.root)
 

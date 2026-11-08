@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build_site import build, rule_html
+from build_site import build, install_command, rule_html
 from package import load_catalog
 
 
@@ -29,6 +29,17 @@ class Elements(HTMLParser):
 
 
 class SiteTests(unittest.TestCase):
+    def test_install_command_pins_a_tree_url_instead_of_a_skill_suffix(self):
+        import shlex
+        from urllib.parse import urlsplit
+        for version in ('1.0.0', '1.0.1', '2.5.8'):
+            command = shlex.split(install_command(version))
+            self.assertEqual(command[:3], ['npx', 'skills', 'add'])
+            parsed = urlsplit(command[3])
+            self.assertEqual(parsed.netloc, 'github.com')
+            self.assertEqual(parsed.path, f'/sakimyto/japanese-web-design/tree/v{version}/skills/japanese-web-design')
+            self.assertEqual(command[4:], ['--skill', 'japanese-web-design'])
+
     def test_all_rules_render_exactly_once_and_match_data(self):
         data = load_catalog()
         with tempfile.TemporaryDirectory() as temporary:

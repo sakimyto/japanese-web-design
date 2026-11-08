@@ -12,6 +12,10 @@ ORIGIN = 'https://japanese-design.sakimyto.com'
 REPOSITORY = 'https://github.com/sakimyto/japanese-web-design'
 
 
+def install_command(version):
+    return f'npx skills add {REPOSITORY}/tree/v{version}/skills/japanese-web-design --skill japanese-web-design'
+
+
 def rule_html(rule, section, sources):
     text = ' '.join(str(rule[key]) for key in ('id', 'title', 'when', 'advice', 'example', 'exception', 'check'))
     links = ' / '.join(f'<a href="{html.escape(sources[ref]["url"], quote=True)}">{html.escape(sources[ref]["title"])}</a>' for ref in rule['sources'])
@@ -32,7 +36,7 @@ def build(output=None):
     categories = '<button type="button" class="filter active" data-category="all" aria-pressed="true">すべて</button>'
     categories += ''.join(f'<button type="button" class="filter" data-category="{section["id"]}" aria-pressed="false">{html.escape(section["title"])}</button>' for section in data['sections'])
     body = '\n'.join(rule_html(rule, section, sources) for section in data['sections'] for rule in section['rules'])
-    install = f'npx skills add sakimyto/japanese-web-design@v{data["version"]} --skill japanese-web-design'
+    install = install_command(data['version'])
     jsonld = json.dumps({
         '@context': 'https://schema.org', '@type': 'CreativeWork',
         'name': '日本語Webデザイン補助', 'url': ORIGIN + '/', 'inLanguage': 'ja',

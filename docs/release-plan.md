@@ -1,4 +1,4 @@
-# v1.0.0の公開範囲
+# v1.0.1の公開範囲
 
 2026-11-08の「ブラッシュアップしきってリリース」に基づく。編集元を専用repositoryへ移し、スキル、出典付きガイド、比較例、ZIP、導入方法を公開する。sakimyto.comには実験の記録を登録する。
 
@@ -10,7 +10,7 @@
 
 ## 完成状態
 
-- sakimyto/japanese-web-designの公開repository、v1.0.0のタグとZIPを提供する。
+- sakimyto/japanese-web-designの公開repository、v1.0.1のタグとZIPを提供する。
 - 標準のskills CLIで、隔離したテスト用projectへ導入でき、全参照ファイルが揃う。
 - 公開Webガイドでルールを検索・分野別に絞り込み、修正例と導入方法を確認できる。
 - HTML、CSS、JavaScript、スキル配布物を検査し、接続済みChromeで主な操作と折り返しを確認する。
