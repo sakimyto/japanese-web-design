@@ -74,5 +74,48 @@
         "sha256": "812a52dce3261dc0597b7279cf60d21ab23ed171e233cf63abe6327453a043f2"
       }
     ]
+  },
+  "siteDiscovery": {
+    "origin": "https://sakimyto.com",
+    "results": [
+      {
+        "path": "/lab",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 100918
+      },
+      {
+        "path": "/lab/japanese-web-design",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 31900
+      },
+      {
+        "path": "/en/lab/japanese-web-design",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 31438
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 831086
+      },
+      {
+        "path": "/llms.txt",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 47249
+      },
+      {
+        "path": "/llms-full.txt",
+        "status": 200,
+        "hasRecord": true,
+        "bytes": 362904
+      }
+    ],
+    "productionDeployment": "success",
+    "indexNow": "success"
   }
 }

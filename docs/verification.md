@@ -47,3 +47,5 @@ v1.0.1の公開タグから、skills CLI 1.7.6でCodexとClaude Codeへ導入し
 ZIPのSHA-256は `812a52dce3261dc0597b7279cf60d21ab23ed171e233cf63abe6327453a043f2`。Workerの公開バージョンは `4c16e449-a6ac-4f8f-887a-22b9c2a82fb8`。CSP、nosniff、Referrer-Policy、フレームの制限を確認した。[公開CI](https://github.com/sakimyto/japanese-web-design/actions/runs/42439486851)も成功している。
 
 本番Chromeでv1.0.1、64項目、タグを固定した導入URLとコピーの成功を読み戻し、エラー・警告は0件だった。値をまとめた記録は [release-evidence.json](release-evidence.json) にある。
+
+本体サイトのラボ一覧、新しい日英の記録、sitemap、llms.txt、llms-full.txtも200となり、新規項目を含むことを確認した。日英それぞれのH1とcanonical、ガイドへの外部リンクを照合した。本体の必須CI、本番配備、IndexNow送信も成功している。
