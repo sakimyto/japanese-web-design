@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="いつものデザインスキルに、日本語の仕上げを。和欧混植、改行、文字の密度、UI文言、日本語入力を扱う、出典付きの補助スキルとガイド。">
+  <meta name="theme-color" content="#f5f4ee">
+  <meta property="og:title" content="日本語Webデザイン補助 — いつものスキルに、日本語の仕上げを。">
+  <meta property="og:description" content="{{SOURCE_COUNT}}の一次資料から、{{RULE_COUNT}}の判断を。既存のデザインスキルと重ねて使う、出典付きガイド。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://japanese-design.sakimyto.com/">
+  <link rel="canonical" href="https://japanese-design.sakimyto.com/">
+  <link rel="stylesheet" href="/style.css">
+  <title>日本語Webデザイン補助 — いつものスキルに、日本語の仕上げを。</title>
+  <script type="application/ld+json">{{JSONLD}}</script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#guide">ガイド本文へ</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="日本語Webデザイン補助 ホーム"><span class="brand-mark" aria-hidden="true">あ</span><span>日本語Webデザイン補助</span></a>
+    <nav aria-label="メイン"><a href="#guide">ガイド</a><a href="#use">使い方</a><a href="https://github.com/sakimyto/japanese-web-design">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="edition">デザインスキルに加える、日本語の視点 <span>v{{VERSION}}</span></p>
+        <h1 id="hero-title">いつものスキルに、<br class="hero-break">日本語の仕上げを。</h1>
+        <p class="lead">書体は合っている。でも、少し読みにくい。<br>改行や文字の密度から、日本語の画面を整えます。</p>
+        <div class="hero-actions"><a class="button primary" href="#use">スキルを使う <span aria-hidden="true">↗</span></a><a class="text-link" href="#guide">{{RULE_COUNT}}項目のガイドを読む <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-note">既存のデザイン方針と併用 / MIT / 登録不要</p>
+      </div>
+      <div class="specimen" aria-label="日本語の組版見本">
+        <div class="specimen-top"><span>文字のかたち、言葉のまとまり。</span><span aria-hidden="true">Aa / あ</span></div>
+        <p class="specimen-title">「日本語」を、<br>ちゃんと整える。</p>
+        <div class="specimen-bottom"><span>改行 · 行高 · 和欧混植</span><span>AIとつくる、Webの言葉。</span></div>
+      </div>
+    </section>
+    <div class="facts wrap" aria-label="収録内容"><p><strong>{{RULE_COUNT}}</strong> 項目の判断</p><p><strong>{{SOURCE_COUNT}}</strong> 件の一次資料</p><p><strong>8</strong> 分野を必要なときに</p><p>条件・例外・確認方法つき</p></div>
+    <section class="comparison wrap" aria-labelledby="comparison-title">
+      <div class="section-heading"><p class="eyebrow">同じ言葉で、比べてみる</p><h2 id="comparison-title">行間にも、情報のまとまりがある。</h2><p>書体と文章を変えずに、見出しと本文の行高・字間を調整した編集例です。</p></div>
+      <div class="comparison-grid">
+        <div class="example"><p class="example-label">調整前</p><div class="sample before"><p class="sample-title">チームの毎日を、<br>少し軽く。</p><p class="sample-body">気づいたことを共有し、次に取り組むことを揃える。AIと一緒に、日々の仕事を進めましょう。</p></div><p class="sample-meta">見出しの行高 1.05 / 字間 −0.06em</p></div>
+        <div class="example after-example"><p class="example-label">調整後</p><div class="sample after"><p class="sample-title">チームの毎日を、<br>少し軽く。</p><p class="sample-body">気づいたことを共有し、次に取り組むことを揃える。AIと一緒に、日々の仕事を進めましょう。</p></div><p class="sample-meta">見出しの行高 1.45 / 字間 normal</p></div>
+      </div>
+      <p class="comparison-note">この例は自作した比較用の見本です。スキルの有無による生成結果や、利用者試験の結果ではありません。<a href="#T04">行高の考え方を読む ↗</a></p>
+    </section>
+    <section class="guide wrap" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading"><p class="eyebrow">必要なところから</p><h2 id="guide-title">日本語を整える、{{RULE_COUNT}}の判断。</h2><p>正解を一つに固定せず、いまの画面で判断できるように。各項目に、使う場面と出典を付けました。</p></div>
+      <div class="guide-controls" hidden id="guide-controls"><label class="search-label" for="search">気になる言葉・ルールIDで探す</label><div class="search-row"><input id="search" type="search" name="search" placeholder="例：見出し、IME、C03" autocomplete="off"><button id="reset" class="reset" type="button">条件をリセット</button></div><div class="filters" role="group" aria-label="ガイドの分野">{{CATEGORIES}}</div><p class="result-count" id="results" role="status">{{RULE_COUNT}}件を表示</p></div>
+      <div class="rules" id="rules">{{RULES}}</div><p id="no-results" hidden>条件に合う項目がありません。別の言葉を使うか、条件をリセットしてください。</p>
+    </section>
+    <section class="use-section" id="use" aria-labelledby="use-title"><div class="wrap use-grid"><div><p class="eyebrow">いつもの制作に加える</p><h2 id="use-title">必要なのは、<br>スキルをひとつ足すこと。</h2><p>frontend-designなど、使い慣れたデザインスキルと併用します。ブランド、色、構成を保ちながら、日本語の実文を見て仕上げます。</p><a class="text-link" href="https://github.com/sakimyto/japanese-web-design#readme">詳しい導入方法 ↗</a></div><div class="install-panel"><p class="panel-label">プロジェクトに追加</p><pre><code id="install-command">{{INSTALL}}</code></pre><button class="copy-button" type="button" data-copy="install-command">導入コマンドをコピー</button><p class="install-alternative"><a href="/japanese-web-design-{{VERSION}}.zip" download>ZIPでダウンロード ↙</a><a href="/japanese-web-design-{{VERSION}}.zip.sha256">SHA-256</a></p><p class="panel-label prompt-label">エージェントへの依頼例</p><pre class="prompt"><code id="prompt">frontend-design と japanese-web-design を使って、日本語の料金ページを作って。
+既存のブランド方針を保ち、見出しの改行、文字の密度、価格と条件のまとまり、操作ラベルを調整して。</code></pre><button class="copy-button secondary-copy" type="button" data-copy="prompt">依頼文をコピー</button><p id="copy-status" class="copy-status" role="status"></p></div></div></section>
+    <section class="scope wrap" aria-labelledby="scope-title"><div class="section-heading"><p class="eyebrow">判断の根拠を、ひとまとめにしない</p><h2 id="scope-title">仕様と実践、試すための目安。</h2></div><div class="basis-grid"><article><span>{{SPEC_COUNT}}項目</span><h3>技術仕様・標準の解説</h3><p>CSSやHTMLの動作、標準の条件。実装状況と、適用される範囲も確かめます。</p></article><article><span>{{PRACTICE_COUNT}}項目</span><h3>公開されている実践</h3><p>デジタル庁やSmartHRなどの基準。企業や用途の違いを踏まえて参照します。</p></article><article><span>{{HYPOTHESIS_COUNT}}項目</span><h3>編集上の仮説</h3><p>実画面で比較するための出発点。行高や文字数の目安を、一律の義務にはしません。</p></article></div><p class="scope-note">生成結果の改善率、CVRの向上、すべての環境での表示を保証するものではありません。<a href="https://github.com/sakimyto/japanese-web-design/blob/main/docs/verification.md">検証したこと・残っていること ↗</a></p></section>
+  </main>
+  <footer class="wrap site-footer"><a class="brand" href="https://sakimyto.com/lab/japanese-web-design">sakimytoの実験から <span aria-hidden="true">↗</span></a><div><a href="https://github.com/sakimyto/japanese-web-design">GitHub</a><a href="/llms.txt">AI向けの案内</a><span>v{{VERSION}} · MIT</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+name: Check skill and guide
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.15.0'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '26.12.1'
+      - name: Check generated references and skill package
+        run: python3 scripts/package.py check
+      - name: Test data, package, HTML and broken variants
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Test search intersection and boundary inputs
+        run: node --test scripts/*.test.mjs
+      - name: Build public site and ZIP
+        run: python3 scripts/build_site.py
+      - name: Check JSON and JavaScript
+        run: npx --yes @biomejs/biome@2.4.15 check .

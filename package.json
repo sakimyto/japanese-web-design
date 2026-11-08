@@ -1,0 +1,12 @@
+{
+  "name": "japanese-web-design",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 scripts/package.py render && python3 scripts/package.py check && python3 scripts/build_site.py",
+    "test": "python3 -m unittest discover -s scripts -p 'test_*.py' && node --test scripts/*.test.mjs",
+    "dev": "bun x wrangler@4.158.0 dev --local --port 8789",
+    "deploy": "bun x wrangler@4.158.0 deploy"
+  }
+}

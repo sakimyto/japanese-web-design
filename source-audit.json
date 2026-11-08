@@ -1,0 +1,366 @@
+{
+  "checkedAt": "2026-11-08",
+  "method": "Direct HTTP retrieval. Hashes identify fetched documents; HTTP success does not verify every claim.",
+  "results": [
+    {
+      "id": "jlreq",
+      "requestedUrl": "https://www.w3.org/TR/jlreq/",
+      "finalUrl": "https://www.w3.org/TR/jlreq/",
+      "httpStatus": 200,
+      "sha256": "cfb1def5bf1594d59080a26d8d03c2670bb3116490ab57ef6e131b166a7c832f",
+      "bytes": 2318308
+    },
+    {
+      "id": "css-text3",
+      "requestedUrl": "https://www.w3.org/TR/css-text-3/",
+      "finalUrl": "https://www.w3.org/TR/css-text-3/",
+      "httpStatus": 200,
+      "sha256": "17c26f1b41455947f106dac81736944b12da328ee4892c7c5b601f5b65ced55a",
+      "bytes": 540326
+    },
+    {
+      "id": "css-text4",
+      "requestedUrl": "https://www.w3.org/TR/css-text-4/",
+      "finalUrl": "https://www.w3.org/TR/css-text-4/",
+      "httpStatus": 200,
+      "sha256": "106c5cd086ab23b0edea5aa3ff6876b61cc623154f728aa269b74f0527dba19d",
+      "bytes": 888007
+    },
+    {
+      "id": "css-values",
+      "requestedUrl": "https://www.w3.org/TR/css-values-4/#ic",
+      "finalUrl": "https://www.w3.org/TR/css-values-4/#ic",
+      "httpStatus": 200,
+      "sha256": "7b6b68c34d00d7f6945e66e4e2efa913266299f597d5825393cae85dac1cc78c",
+      "bytes": 823488
+    },
+    {
+      "id": "dads-type",
+      "requestedUrl": "https://design.digital.go.jp/dads/foundations/typography/",
+      "finalUrl": "https://design.digital.go.jp/dads/foundations/typography/",
+      "httpStatus": 200,
+      "sha256": "9b38a81415d6eaf8d1f9d0c5a5a0a26ac9003158cb3a91022d66bb8823109f71",
+      "bytes": 86826
+    },
+    {
+      "id": "smarthr-type",
+      "requestedUrl": "https://smarthr.design/products/design-tokens/typography/",
+      "finalUrl": "https://smarthr.design/products/design-tokens/typography/",
+      "httpStatus": 200,
+      "sha256": "cdef12926a11c64dcf0af194f9561520f4b70a4221d8192b402189e36b0f73db",
+      "bytes": 226908
+    },
+    {
+      "id": "smarthr-webfont",
+      "requestedUrl": "https://smarthr.design/basics/typography/website/",
+      "finalUrl": "https://smarthr.design/basics/typography/website/",
+      "httpStatus": 200,
+      "sha256": "622a3d3113bd367f3437dbbb8e7eeabc669780fe4bb10cbcc3d7449fd917419e",
+      "bytes": 78122
+    },
+    {
+      "id": "smarthr-font",
+      "requestedUrl": "https://smarthr.design/basics/typography/",
+      "finalUrl": "https://smarthr.design/basics/typography/",
+      "httpStatus": 200,
+      "sha256": "75dc11c7359f0bb593622808615ab735731d27971856915d69abcc0f156582fe",
+      "bytes": 75740
+    },
+    {
+      "id": "html-lang",
+      "requestedUrl": "https://www.w3.org/International/questions/qa-html-language-declarations",
+      "finalUrl": "https://www.w3.org/International/questions/qa-html-language-declarations",
+      "httpStatus": 200,
+      "sha256": "28b266a8a910b41f4ec5172f093bab0578c540f722ab0dcec38f759509b4f106",
+      "bytes": 18741
+    },
+    {
+      "id": "font-performance",
+      "requestedUrl": "https://web.dev/articles/font-best-practices",
+      "finalUrl": "https://web.dev/articles/font-best-practices",
+      "httpStatus": 200,
+      "sha256": "81718775f1dccbace87877cfce2602f01fb6178a0bbe936bca98cc105a6d0b51",
+      "bytes": 168420
+    },
+    {
+      "id": "font-features",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-feature-settings",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-feature-settings",
+      "httpStatus": 200,
+      "sha256": "2038b87fca72c6e44f7d7ffd179b66fbbc9777665ef6fdfddc5ed0c4a73ddda4",
+      "bytes": 335132
+    },
+    {
+      "id": "east-asian",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-east-asian",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-east-asian",
+      "httpStatus": 200,
+      "sha256": "af60860976630c935103739714eb07e9f8a8a263d21f71a18cf030ff11c0b6bf",
+      "bytes": 334373
+    },
+    {
+      "id": "autospace",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-autospace",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-autospace",
+      "httpStatus": 200,
+      "sha256": "4c6ee897f8c4c21df4f03c9b013637ede8c90046949c9268a4afb45e97189cd2",
+      "bytes": 332643
+    },
+    {
+      "id": "spacing-trim",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
+      "httpStatus": 200,
+      "sha256": "a003172085ea17149c55ce24520047f55a0b76d9636d3345c7d46c96fba6560a",
+      "bytes": 334154
+    },
+    {
+      "id": "word-break",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-break",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-break",
+      "httpStatus": 200,
+      "sha256": "5760219a5329f8e182523c57bd92d674840c2fca3960cf939d0cce758333726d",
+      "bytes": 334385
+    },
+    {
+      "id": "ruby",
+      "requestedUrl": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element",
+      "finalUrl": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element",
+      "httpStatus": 200,
+      "sha256": "9cf14302d4e2a8aeabb171eab0a12ba066c0dadda40a06f7bb39f181533ef1f7",
+      "bytes": 326265
+    },
+    {
+      "id": "writing-mode",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/writing-mode",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/writing-mode",
+      "httpStatus": 200,
+      "sha256": "a1bdd960862c0fb6afc304815581fe5a647bc9180c026a634d4eee087fbd8896",
+      "bytes": 341551
+    },
+    {
+      "id": "dads-spacing",
+      "requestedUrl": "https://design.digital.go.jp/dads/foundations/spacing/",
+      "finalUrl": "https://design.digital.go.jp/dads/foundations/spacing/",
+      "httpStatus": 200,
+      "sha256": "f27a80093c546125cee64bdcfcd121ed9234f799dca2075db46bdd47a9217e81",
+      "bytes": 43052
+    },
+    {
+      "id": "dads-layout",
+      "requestedUrl": "https://design.digital.go.jp/dads/foundations/layout/",
+      "finalUrl": "https://design.digital.go.jp/dads/foundations/layout/",
+      "httpStatus": 200,
+      "sha256": "b944bcee0f336d4042f35d5545e79c5428cb839582f7beb7afaebe1c8929af2d",
+      "bytes": 43074
+    },
+    {
+      "id": "smarthr-button",
+      "requestedUrl": "https://smarthr.design/products/components/button/",
+      "finalUrl": "https://smarthr.design/products/components/button/",
+      "httpStatus": 200,
+      "sha256": "4ddbb36fd6e73164509c4af57768c2761f11a0f8d925cb9ff77c0b253720d934",
+      "bytes": 419027
+    },
+    {
+      "id": "smarthr-writing",
+      "requestedUrl": "https://smarthr.design/products/contents/ui-text/app-writing/",
+      "finalUrl": "https://smarthr.design/products/contents/ui-text/app-writing/",
+      "httpStatus": 200,
+      "sha256": "33f4e846aeeaf12dd3f965593ab7ab02e69d105d8209465c466d74c3edaf9664",
+      "bytes": 252210
+    },
+    {
+      "id": "smarthr-error",
+      "requestedUrl": "https://smarthr.design/products/contents/error-messages/",
+      "finalUrl": "https://smarthr.design/products/contents/error-messages/",
+      "httpStatus": 200,
+      "sha256": "dcf45ec5f7e8701dcd0a1f507cbac35780735a719ff3a0cc308b40d99438f83c",
+      "bytes": 180495
+    },
+    {
+      "id": "dads-input",
+      "requestedUrl": "https://design.digital.go.jp/dads/components/input-text/usage/",
+      "finalUrl": "https://design.digital.go.jp/dads/components/input-text/usage/",
+      "httpStatus": 200,
+      "sha256": "51ebd272fe92f9d2c0018c616e63c3749b0ef8bc5277b4f22990f2decf360430",
+      "bytes": 84486
+    },
+    {
+      "id": "dads-input-a11y",
+      "requestedUrl": "https://design.digital.go.jp/dads/components/input-text/accessibility/",
+      "finalUrl": "https://design.digital.go.jp/dads/components/input-text/accessibility/",
+      "httpStatus": 200,
+      "sha256": "2f7110e7c861e81ad57ecf1099f2d9639edca36754fc037be3b44c3665019138",
+      "bytes": 85575
+    },
+    {
+      "id": "names",
+      "requestedUrl": "https://www.w3.org/International/questions/qa-personal-names",
+      "finalUrl": "https://www.w3.org/International/questions/qa-personal-names",
+      "httpStatus": 200,
+      "sha256": "da7e3666c04fbc4811bb532d1b9b7333c6b9119181df4b3543dafee9267050f2",
+      "bytes": 38351
+    },
+    {
+      "id": "unicode-normalization",
+      "requestedUrl": "https://www.unicode.org/reports/tr15/",
+      "finalUrl": "https://www.unicode.org/reports/tr15/",
+      "httpStatus": 200,
+      "sha256": "efcf19da85342bd87fb93b590975ca422597243f2e19c6cb46e941d0d2d48d73",
+      "bytes": 141588
+    },
+    {
+      "id": "ime",
+      "requestedUrl": "https://developer.chrome.com/docs/modern-web-guidance/guides/forms/ime-safe-enter-submit",
+      "finalUrl": "https://developer.chrome.com/docs/modern-web-guidance/guides/forms/ime-safe-enter-submit",
+      "httpStatus": 200,
+      "sha256": "7b386e36c8d790b2f838791d2e05f131491e435b7bc0ab5b03fe8f25e94abe90",
+      "bytes": 178889
+    },
+    {
+      "id": "autofill",
+      "requestedUrl": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+      "finalUrl": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+      "httpStatus": 200,
+      "sha256": "49e4b7bccc7793dec36596392aca76db12a88bdb7fe6e68ce2043a005da43185",
+      "bytes": 466321
+    },
+    {
+      "id": "number-format",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat",
+      "httpStatus": 200,
+      "sha256": "451ddc69f50a2c962bee53441db97c9a0e90cf15110066a8de2a9cdd0d6d8fad",
+      "bytes": 166877
+    },
+    {
+      "id": "date-format",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat",
+      "httpStatus": 200,
+      "sha256": "0e33881f6e75683280791db90b0afad916f651b37a05ebd31ab29d008e35b4b7",
+      "bytes": 170043
+    },
+    {
+      "id": "segmenter",
+      "requestedUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter",
+      "httpStatus": 200,
+      "sha256": "75f5a78ea3333097b8e50f77d985451b81ffa9702fa70fae82446fe3af235a32",
+      "bytes": 161680
+    },
+    {
+      "id": "text-spacing",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+      "httpStatus": 200,
+      "sha256": "48d38892c50739b98b6d7c4d54b83d15152e9c9dbba2a550bc5dec5bead38df2",
+      "bytes": 55290
+    },
+    {
+      "id": "reflow",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "httpStatus": 200,
+      "sha256": "9c0d03521d14875c0ac64e8a089ad17b764ccc2a499813152118a93c5ef31ff7",
+      "bytes": 85764
+    },
+    {
+      "id": "contrast",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "httpStatus": 200,
+      "sha256": "80ecbe547e7e963560df5e62ed92305ce1af6f8965a7e48457fe38b0d76f8d1b",
+      "bytes": 80501
+    },
+    {
+      "id": "text-images",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
+      "httpStatus": 200,
+      "sha256": "bb62fabaecea238898045fb59501d17c63e2f55bfb6a52bf65f40fe8798d935d",
+      "bytes": 48337
+    },
+    {
+      "id": "target-size",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "httpStatus": 200,
+      "sha256": "7735697bb0163a9cf05bdfacca9dd7a14cede9a733c7e236afefee8d5c1d1e5b",
+      "bytes": 66123
+    },
+    {
+      "id": "language",
+      "requestedUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
+      "finalUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
+      "httpStatus": 200,
+      "sha256": "091b815394cbe46f1a63ecdbb729e840a00fcdd2c70521d6322acab1a5f70596",
+      "bytes": 42703
+    },
+    {
+      "id": "utf8",
+      "requestedUrl": "https://www.w3.org/International/questions/qa-forms-utf-8",
+      "finalUrl": "https://www.w3.org/International/questions/qa-forms-utf-8",
+      "httpStatus": 200,
+      "sha256": "52214aaa511c11399ff9bcdb8f16dcd1b68f3abe8862451529139fbad91fdc09",
+      "bytes": 5956
+    },
+    {
+      "id": "link-text",
+      "requestedUrl": "https://design.digital.go.jp/dads/foundations/link-text/accessibility/",
+      "finalUrl": "https://design.digital.go.jp/dads/foundations/link-text/accessibility/",
+      "httpStatus": 200,
+      "sha256": "f8e02b68cde5bc32c39ed808846299658f4663e0c19ee618bcb15bfa70c5e766",
+      "bytes": 41317
+    },
+    {
+      "id": "anthropic-frontend",
+      "requestedUrl": "https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md",
+      "finalUrl": "https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md",
+      "httpStatus": 200,
+      "sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+      "bytes": 9390
+    },
+    {
+      "id": "vercel-web",
+      "requestedUrl": "https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md",
+      "finalUrl": "https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md",
+      "httpStatus": 200,
+      "sha256": "d246b026f4f29b5823a9cc857f9edf3d2507002e055e32040cadeaf3b38e0234",
+      "bytes": 8055
+    },
+    {
+      "id": "ja-webtypo",
+      "requestedUrl": "https://raw.githubusercontent.com/hanageruge/ja-webtypo-skill/main/SKILL.md",
+      "finalUrl": "https://raw.githubusercontent.com/hanageruge/ja-webtypo-skill/main/SKILL.md",
+      "httpStatus": 200,
+      "sha256": "db675ab9196a6aa45c4d18d0f2fad4e3a34b7e201e2655357f712cff62e80018",
+      "bytes": 56955
+    },
+    {
+      "id": "japanese-review",
+      "requestedUrl": "https://raw.githubusercontent.com/y-endo/agents/main/.agents/skills/japanese-design-review/SKILL.md",
+      "finalUrl": "https://raw.githubusercontent.com/y-endo/agents/main/.agents/skills/japanese-design-review/SKILL.md",
+      "httpStatus": 200,
+      "sha256": "8b8c2f70aee8e5d2e51971b48253bb17e9d4fec93d95268b1ed83358c8c1a79d",
+      "bytes": 8384
+    },
+    {
+      "id": "awesome-design-jp",
+      "requestedUrl": "https://raw.githubusercontent.com/kzhrknt/awesome-design-md-jp/main/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/kzhrknt/awesome-design-md-jp/main/README.md",
+      "httpStatus": 200,
+      "sha256": "ca450b8b8b3ad0802ad7608e4422d8a3e432ad3a0a732cfca47b58d50a5fddfe",
+      "bytes": 269689
+    },
+    {
+      "id": "skills-cli",
+      "requestedUrl": "https://raw.githubusercontent.com/vercel-labs/skills/main/docs/commands.md",
+      "finalUrl": "https://raw.githubusercontent.com/vercel-labs/skills/main/docs/commands.md",
+      "httpStatus": 200,
+      "sha256": "04f29ee2e5baf0decb2d51f16dbb806e2c6ed491aeb38aa1f67595d8e6f7f413",
+      "bytes": 17972
+    }
+  ]
+}
