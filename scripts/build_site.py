@@ -57,6 +57,13 @@ def build(output=None):
     if '{{' in template:
         raise ValueError('Unresolved template token')
     (output / 'index.html').write_text(template, encoding='utf-8')
+    ai_template = (ROOT / 'site' / 'for-ai.html').read_text(encoding='utf-8')
+    for name, value in replacements.items():
+        ai_template = ai_template.replace('{{' + name + '}}', value)
+    if '{{' in ai_template:
+        raise ValueError('Unresolved AI template token')
+    (output / 'for-ai').mkdir(exist_ok=True)
+    (output / 'for-ai' / 'index.html').write_text(ai_template, encoding='utf-8')
     for name in ('style.css', 'app.js'):
         shutil.copyfile(ROOT / 'site' / name, output / name)
     bundle = archive(data)
@@ -69,6 +76,7 @@ def build(output=None):
 日本語の組版とUIを、既存のデザイン方針に合わせて調整する補助スキル。
 技術仕様、公開実践、編集上の仮説を区別する。企業固有の数値を一律に強制しない。
 
+- [AI向け資料]({ORIGIN}/for-ai/): 適用条件、スキル、カタログの入口。
 - [スキル]({REPOSITORY}/blob/v{data['version']}/skills/japanese-web-design/SKILL.md)
 - [カタログ]({ORIGIN}/catalog.json): 条件、根拠、例外、確認方法を持つ{len(rules)}項目。
 - [導入と使い方]({REPOSITORY}#readme)
@@ -77,7 +85,7 @@ def build(output=None):
 生成結果の美的な改善率、CVR向上、全環境での表示・IME対応は保証していない。
 ''', encoding='utf-8')
     (output / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
-    (output / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{ORIGIN}/</loc></url></urlset>\n')
+    (output / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{ORIGIN}/</loc></url><url><loc>{ORIGIN}/for-ai/</loc></url></urlset>\n')
     (output / '404.html').write_text('<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ページが見つかりません</title><h1>ページが見つかりません</h1><a href="/">ガイドに戻る</a></html>')
     (output / '_headers').write_text("""/*
   X-Content-Type-Options: nosniff

@@ -19,7 +19,7 @@ Webガイドは `bun run deploy` でCloudflare Workersへ配備する。Worker�
 
 2026-11-08の環境では、cf CLIに認証がなく、既存のWrangler OAuthでは対象アカウントへの接続を確認できた。新しいログインや認証情報の移し替えを行わず、Wrangler 4.158.0を固定して使う。cloudflare.config.tsを使うcfへの移行は、認証と静的ビルドの連携を別途確認してから行う。
 
-公開後は、トップ、CSS・JS、カタログ、ZIP、照合ファイル、存在しないURLの404、セキュリティヘッダー、実験への戻りリンクを読み戻す。sakimyto.comのラボ登録とSEO生成は、そのrepositoryの必須CI・配備手順で公開する。
+公開後は、トップ、AI向け資料（`/for-ai/`）、人が読むガイドへの戻り先、CSS・JS、カタログ、ZIP、照合ファイル、存在しないURLの404、セキュリティヘッダー、実験への戻りリンクを読み戻す。sakimyto.comのラボ登録とSEO生成は、そのrepositoryの必須CI・配備手順で公開する。
 
 ## 復旧
 
