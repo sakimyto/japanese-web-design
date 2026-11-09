@@ -57,6 +57,42 @@ class SiteTests(unittest.TestCase):
             self.assertTrue((output / f'japanese-web-design-{data["version"]}.zip').is_file())
             self.assertIn('https://sakimyto.com/lab/japanese-web-design', content)
 
+    def assert_landing_contract(self, content):
+        self.assertIn('いつものデザインスキルに、日本語の調整を。', content)
+        self.assertLess(content.index('id="use"'), content.index('id="guide"'), 'Install before reference')
+        self.assertLess(content.index('id="scope-title"'), content.index('id="guide"'), 'Explain before reference')
+        self.assertIn('href="/for-ai/"', content, 'Dedicated AI entrance')
+        heading = content.split('<h1', 1)[1].split('</h1>', 1)[0]
+        self.assertNotIn('<br', heading, 'Natural heading wrapping')
+
+    def test_landing_explains_and_installs_before_the_full_reference(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = build(temporary)
+            content = (output / 'index.html').read_text()
+            self.assert_landing_contract(content)
+
+    def test_landing_contract_detects_missing_entrance_and_wrong_priority(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            content = (build(temporary) / 'index.html').read_text()
+            self.assert_landing_contract(content)
+            with self.assertRaisesRegex(AssertionError, 'Dedicated AI entrance'):
+                self.assert_landing_contract(content.replace('href="/for-ai/"', 'href="/"'))
+            moved = content.replace('id="use"', 'id="temporary"').replace('id="guide"', 'id="use"').replace('id="temporary"', 'id="guide"')
+            with self.assertRaisesRegex(AssertionError, 'Install before reference'):
+                self.assert_landing_contract(moved)
+
+    def test_ai_entrance_links_data_and_preserves_a_human_return(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = build(temporary)
+            page = output / 'for-ai' / 'index.html'
+            self.assertTrue(page.is_file(), 'Dedicated AI page must be published')
+            content = page.read_text()
+            for href in ('/catalog.json', '/llms.txt', '/#guide', '/#use'):
+                self.assertIn(f'href="{href}"', content)
+            self.assertIn('rel="canonical" href="https://japanese-design.sakimyto.com/for-ai/"', content)
+            self.assertNotIn('src="/app.js"', content, 'Do not initialize guide controls on a resource page')
+            self.assertIn('https://japanese-design.sakimyto.com/for-ai/', (output / 'sitemap.xml').read_text())
+
     def test_catalog_text_cannot_introduce_markup_or_attributes(self):
         data = load_catalog()
         section = data['sections'][0]

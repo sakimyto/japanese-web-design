@@ -1,10 +1,10 @@
 # 日本語Webデザイン補助
 
-いつものデザインスキルに、日本語の仕上げを。
+いつものデザインスキルに、日本語の調整を。
 
 和欧混植、見出しの改行、文字の密度、UI文言、日本語入力を扱うAgent Skillです。frontend-designなどの既存スキルと併用し、ブランドや構成を保ちながら日本語の実文で調整します。
 
-[Webガイド](https://japanese-design.sakimyto.com/) · [v1.0.1のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.1) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
+[Webガイド](https://japanese-design.sakimyto.com/) · [AI向け資料](https://japanese-design.sakimyto.com/for-ai/) · [v1.0.1のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.1) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
 
 ## 導入
 
