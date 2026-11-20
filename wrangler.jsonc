@@ -13,7 +13,6 @@
   },
   "routes": [
     { "pattern": "sakimyto.com/japanese-web-design*", "zone_name": "sakimyto.com" },
-    { "pattern": "sakimyto.com/japanese-web-design/*", "zone_name": "sakimyto.com" },
     { "pattern": "japanese-design.sakimyto.com", "custom_domain": true }
   ]
 }

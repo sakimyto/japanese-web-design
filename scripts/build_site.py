@@ -34,7 +34,9 @@ def rule_html(rule, section, sources):
 def build(output=None):
     data = load_catalog()
     output = Path(output) if output else ROOT / 'dist' / 'site'
-    output.mkdir(parents=True, exist_ok=True)
+    # A deploy uploads the whole folder, so files from an earlier build must not survive.
+    shutil.rmtree(output, ignore_errors=True)
+    output.mkdir(parents=True)
     sources = {source['id']: source for source in data['sources']}
     rules = [rule for section in data['sections'] for rule in section['rules']]
     categories = '<button type="button" class="filter active" data-category="all" aria-pressed="true">すべて</button>'

@@ -29,7 +29,7 @@ v1.0.1 のスキル、ZIP、タグは変えない。ZIPとスキル本文は旧U
 
 Worker `japanese-web-design` が2つの経路を受ける。
 
-- `sakimyto.com/japanese-web-design*`: 静的アセットを `assets.base_path` で `/japanese-web-design` の下に公開する。`_headers` の規則も公開パスで書く。
+- `sakimyto.com/japanese-web-design*`（末尾の `*` がスラッシュ以降とクエリ付きの入口を含むので、経路は1本）: 静的アセットを `assets.base_path` で `/japanese-web-design` の下に公開する。`_headers` の規則も公開パスで書く。
 - `japanese-design.sakimyto.com`: Workerのスクリプト（`worker/index.js`）が上の表のとおり応答する。
 
 `run_worker_first` は `/japanese-web-design/` の下を除く全パスにする。ガイドのファイルはスクリプトを通らずに配信され、`_headers` がそのまま付く。Cloudflareの資料は、スクリプトが作った応答に `_headers` が付かないと注意しているため、ファイルの配信をスクリプトへ通さない。
@@ -37,6 +37,8 @@ Worker `japanese-web-design` が2つの経路を受ける。
 受け入れた残り: 旧ホストの `/japanese-web-design/` の下は、スクリプトを通らず同じファイルを返す。どこからもリンクしておらず、canonical は新しいURLを指す。
 
 受け入れた残り: 経路 `sakimyto.com/japanese-web-design*` は、クエリ付きの入口を受けるために末尾を `*` にしている。`/japanese-web-designer` のように同じ文字で始まる別のパスもこのWorkerに届き、404 を返す。
+
+受け入れた残り: スクリプトを通る応答には `_headers` が付かない。該当するのは、末尾スラッシュなしの `/japanese-web-design` の 307、上の別パスの 404、旧ホストの 301 と `robots.txt` で、どれもページの本文を持たない。
 
 公開元・パス・旧ホストは `site.config.json` に置き、ビルド、Worker、テストが同じ値を読む。
 
@@ -62,7 +64,17 @@ Worker `japanese-web-design` が2つの経路を受ける。
 
 1 の後、2 の前でも、本体の記録からの旧リンクは 301 で新しいURLへ届く。
 
-復旧は、直前のcommitを再配備する。経路が旧ホストだけに戻り、旧URLが再び 200 を返す。301 を受け取ったブラウザは転送を覚えていることがある。
+復旧は、公開と逆の順で行う。
+
+1. sakimyto.com のrepositoryで、記録のリンク先を旧URLへ戻す変更を公開する。
+2. このrepositoryで、移す前のcommitを別の作業領域に取り出し、ビルドして再配備する。
+3. Cloudflareの画面かAPIで、Worker `japanese-web-design` の経路を読み戻す。`sakimyto.com/japanese-web-design*` が残っていれば外す。`wrangler deploy` が設定から消えた経路を外すかは確かめていない。
+
+3 を省くと、旧版のファイルが新しいパスで応答する。旧版のリンクは最上位から始まるので、CSS・JS・ページ内のリンクが404になる。301 を受け取ったブラウザは転送を覚えていることがあり、復旧後も新しいパスへ進む。経路を外した後は、そのパスを sakimyto.com のアプリが受けて404を返す。
+
+## ビルドと配備
+
+`build_site.py` は出力先を空にしてから書く。`bun run deploy` は先に `bun run build` を実行する。配備は出力先のフォルダを丸ごと送るので、移す前のビルドが残ると、旧ホスト向けの `robots.txt` や古いZIPが新しいパスで公開される。
 
 ## ローカルでの確認（2026-11-20）
 
@@ -72,4 +84,4 @@ Wrangler 4.158.0 の `dev --local` を、ホストを切り替えて2回起動�
 - 旧ホスト: 本番で 200 を返していた11パスと `/for-ai`、クエリ付き、未知のパスが 301、`robots.txt` が 200。v1.0.0 の転送先は GitHub Release で 200、ZIPのSHA-256は旧ホストで配信中のものと同じ `f151a7cd…b889`。
 - ブラウザ: 新しいパスでスタイルと検索が動く（64項目、「IME」で2件）。コンソールのエラーなし。
 
-テストは Python 22件、Node 6件。旧ホストの転送は392通りの境界入力と、壊した3つの変種で確かめた。
+テストは Python 24件、Node 6件。旧ホストの転送は392通りの境界入力と、壊した5つの変種で確かめた。各変種は、その欠陥を名指しする検査で落ちることまで照合する。

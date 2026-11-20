@@ -131,6 +131,22 @@ class SiteTests(unittest.TestCase):
                     with self.subTest(file=path.name):
                         self.assertNotIn(LEGACY_HOST, path.read_text(), 'ORIGIN: the legacy host is not published')
 
+    def test_rebuilding_removes_files_from_an_earlier_build(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = build(temporary)
+            first = sorted(path.relative_to(output).as_posix() for path in output.rglob('*') if path.is_file())
+            (output / 'robots.txt').write_text('Sitemap: https://japanese-design.sakimyto.com/sitemap.xml\n')
+            (output / 'japanese-web-design-1.0.0.zip').write_bytes(b'stale')
+            (output / 'old').mkdir()
+            (output / 'old' / 'index.html').write_text('stale')
+            build(temporary)
+            second = sorted(path.relative_to(output).as_posix() for path in output.rglob('*') if path.is_file())
+            self.assertEqual(second, first, 'A deploy publishes only what the current build wrote')
+
+    def test_deploy_builds_before_publishing(self):
+        scripts = json.loads((ROOT / 'package.json').read_text())['scripts']
+        self.assertTrue(scripts['deploy'].startswith('bun run build && '), 'Never publish a stale dist')
+
     def test_missing_base_path_is_detectable(self):
         with tempfile.TemporaryDirectory() as temporary:
             content = (build(temporary) / 'index.html').read_text()
@@ -145,7 +161,6 @@ class SiteTests(unittest.TestCase):
         host = ORIGIN.removeprefix('https://')
         self.assertEqual(wrangler['routes'], [
             {'pattern': f'{host}{BASE_PATH}*', 'zone_name': host},
-            {'pattern': f'{host}{BASE_PATH}/*', 'zone_name': host},
             {'pattern': LEGACY_HOST, 'custom_domain': True},
         ])
         assets = wrangler['assets']

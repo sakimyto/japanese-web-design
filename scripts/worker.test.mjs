@@ -81,15 +81,32 @@ test('broken mappers are rejected by the same contract', () => {
     url.hostname === config.legacyHost
       ? { status: 301, location: `${config.origin}${url.pathname}${url.search}` }
       : null
-  const redirectsEveryHost = (url) => legacyResponse(new URL(`${legacy}${url.pathname}`))
+  const redirectsEveryHost = (url) =>
+    legacyResponse(new URL(`${legacy}${url.pathname}${url.search}`))
   const forgetsRetiredRelease = (url) => {
     const result = legacyResponse(url)
     return result?.location?.startsWith(release)
       ? { status: 301, location: `${primary}${url.pathname}` }
       : result
   }
-  for (const broken of [dropsPrefix, redirectsEveryHost, forgetsRetiredRelease]) {
-    assert.throws(() => assertLegacyContract(broken), assert.AssertionError)
+  const dropsQuery = (url) => legacyResponse(new URL(url.origin + url.pathname))
+  const doublesPrefix = (url) =>
+    url.hostname === config.legacyHost && url.pathname.startsWith(`${config.basePath}/`)
+      ? { status: 301, location: `${primary}${url.pathname}${url.search}` }
+      : legacyResponse(url)
+  // Each variant must fail at the check that names its defect, not at an unrelated one.
+  for (const [broken, reason] of [
+    [dropsPrefix, '/'],
+    [redirectsEveryHost, `Primary host is never redirected: ${config.origin}//`],
+    [forgetsRetiredRelease, '/japanese-web-design-1.0.0.zip'],
+    [dropsQuery, 'Expected values to be strictly deep-equal:'],
+    [doublesPrefix, 'Already prefixed paths keep one prefix'],
+  ]) {
+    assert.throws(
+      () => assertLegacyContract(broken),
+      (error) => error.message.split('\n')[0] === reason,
+      reason,
+    )
   }
 })
 
