@@ -1,29 +1,30 @@
 import config from '../site.config.json' with { type: 'json' }
 
-const PRIMARY = `${config.origin}${config.basePath}`
-const RELEASE_1_0_0 = 'https://github.com/sakimyto/japanese-web-design/releases/download/v1.0.0'
-// The build publishes only the current version, so the first release moves to its GitHub Release.
-const RETIRED = {
-  '/japanese-web-design-1.0.0.zip': `${RELEASE_1_0_0}/japanese-web-design-1.0.0.zip`,
-  '/japanese-web-design-1.0.0.zip.sha256': `${RELEASE_1_0_0}/japanese-web-design-1.0.0.zip.sha256`,
-}
+const GUIDE = `${config.origin}${config.basePath}`
+const RELEASES = 'https://github.com/sakimyto/japanese-web-design/releases/download'
+const ARCHIVE = /^\/japanese-web-design-(\d+\.\d+\.\d+)\.zip(?:\.sha256)?$/
+// Files of the retired static guide. The guide is now a page of sakimyto.com.
+const RETIRED = new Set(['/style.css', '/app.js', '/sitemap.xml'])
 const ROBOTS = 'User-agent: *\nAllow: /\n'
 
-/** Answer for a URL on the legacy host, or null when the URL belongs to the primary host. */
+/** Answer for a URL on the legacy host, or null when the URL belongs to another host. */
 export function legacyResponse(url) {
   if (url.hostname !== config.legacyHost) return null
   if (url.pathname === '/robots.txt') return { status: 200, body: ROBOTS }
-  if (RETIRED[url.pathname]) return { status: 301, location: RETIRED[url.pathname] }
+  const archive = url.pathname.match(ARCHIVE)
+  if (archive) return { status: 301, location: `${RELEASES}/v${archive[1]}${url.pathname}` }
   const prefixed =
     url.pathname === config.basePath || url.pathname.startsWith(`${config.basePath}/`)
   const path = prefixed ? url.pathname.slice(config.basePath.length) : url.pathname
-  return { status: 301, location: `${PRIMARY}${path}${url.search}` }
+  // The site's canonical URLs have no trailing slash; send each visitor there in one hop.
+  const page = RETIRED.has(path) ? '' : path.replace(/\/+$/, '')
+  return { status: 301, location: `${GUIDE}${page}${url.search}` }
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request) {
     const answer = legacyResponse(new URL(request.url))
-    if (!answer) return env.ASSETS.fetch(request)
+    if (!answer) return fetch(request)
     if (answer.status === 200) {
       return new Response(answer.body, {
         headers: {

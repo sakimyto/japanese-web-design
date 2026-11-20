@@ -1,12 +1,12 @@
 # Japanese Web Design
 
-日本語Web UIの仕上げを補助するAgent Skillと、同じ資料を読む静的ガイド。
+日本語Web UIの仕上げを補助するAgent Skill。Webガイドは sakimyto.com のアプリ（別repository）にあり、このrepositoryのタグ付きの `catalog.json` を読む。ここのWorkerは、旧ホストを新しいURLへ転送するだけである。
 
 - `catalog.json` が知見の編集元。`skills/japanese-web-design/references/` の分野別資料と出典一覧は `python3 scripts/package.py render` で生成する。
 - `SKILL.md`、カタログ、`package.json` のバージョンを揃える。リリース済みタグを上書きしない。
 - 技術仕様、企業の公開実践、編集上の仮説を区別する。仮説の数値を標準の義務へ変えない。
 - 変更前に `docs/release-plan.md` と対象の仕様を確認する。新しい条件は代表・境界・反例を含めて検証する。
-- `bun run build`、`bun run test` を実行する。表示や操作を変えたらブラウザでも確認する。機密情報、第三者の本文、フォント本体を配布物へ加えない。
+- `bun run build`、`bun run test` を実行する。機密情報、第三者の本文、フォント本体を配布物へ加えない。
 - 公開手順は `docs/releasing.md`。サイト配信は既存のWrangler認証と明示したnandaronaアカウントを使う。新しいログインや別アカウントへの切替を自動で行わない。
 - 手元で流す静的検査やユニットテストは差分検出や並列実行など駆使して30秒以内（SNSやYouTubeを見に行かない程度）、CIは10分以内（トイレから帰ってきたら終わってる程度）を目安にチューニングする（並列で流してもよい）。
 - 形式検証と状態マシンを重視する。PR本文は[PRテンプレート](.github/pull_request_template.md)の6項目（変更理由／やったこと／変更範囲／トレードオフ（検討したが採用しなかった案と理由）／変更の影響範囲／検証結果と確かめ方）で書く。検証結果はできれば状態遷移図で示し、本人が再検証できる手順を付ける。

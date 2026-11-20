@@ -4,7 +4,7 @@
 
 和欧混植、見出しの改行、文字の密度、UI文言、日本語入力を扱うAgent Skillです。frontend-designなどの既存スキルと併用し、ブランドや構成を保ちながら日本語の実文で調整します。
 
-[Webガイド](https://sakimyto.com/japanese-web-design/) · [AI向け資料](https://sakimyto.com/japanese-web-design/for-ai/) · [v1.0.1のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.1) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
+[Webガイド](https://sakimyto.com/japanese-web-design) · [AI向け資料](https://sakimyto.com/japanese-web-design/for-ai) · [v1.0.1のZIP](https://github.com/sakimyto/japanese-web-design/releases/tag/v1.0.1) · [sakimytoの実験](https://sakimyto.com/lab/japanese-web-design)
 
 ## 導入
 
@@ -57,7 +57,7 @@ japanese-web-design を使って、この画面の日本語をレビューして
 
 ## 検証と限界
 
-データ・出典の整合、生成資料との一致、ZIPの内容、検索条件の組合せ、不正な文字列を使ったHTMLの検査を行います。公開ページはJavaScriptを無効にしても全項目を読める構造です。
+データ・出典の整合、生成資料との一致、ZIPの内容を検査します。Webガイドは sakimyto.com のアプリにあり、検索条件の組合せや不正な文字列の検査はそちらで行います。
 
 生成AIの出力改善率や、日本語話者による独立した比較評価はまだ測定していません。Webガイドの修正例は自作の編集例であり、スキルの効果を測った実験結果ではありません。実IMEやスクリーンリーダーを含む全環境への対応も保証しません。確認した範囲は [検証記録](docs/verification.md) に残します。
 
@@ -70,9 +70,9 @@ bun run build
 bun run test
 ```
 
-編集元は `catalog.json`。ルールを変えたら、生成した参照Markdownと同じ変更に含めます。Webガイドも同じデータから生成します。CSS例・実装例・評価課題・スキル本体はそれぞれの元ファイルを編集します。
+編集元は `catalog.json`。ルールを変えたら、生成した参照Markdownと同じ変更に含めます。Webガイドは、リリースしたタグの `catalog.json` を sakimyto.com 側へ取り込んで表示します。CSS例・実装例・評価課題・スキル本体はそれぞれの元ファイルを編集します。
 
-サイトのローカル表示は `bun run dev`。公開手順と復旧方法は [releasing.md](docs/releasing.md) にあります。
+公開手順と復旧方法は [releasing.md](docs/releasing.md) にあります。
 
 ## ライセンスと出典
 
