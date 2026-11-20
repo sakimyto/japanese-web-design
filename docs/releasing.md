@@ -15,11 +15,11 @@
 
 `python3 scripts/package.py pack` でZIPとSHA-256を生成する。検証済みcommitにタグを付け、GitHub ReleaseへZIPと照合ファイルを添付する。公開後に匿名で取得し、ローカルのZIPとSHA-256を比較する。タグを指定したCLI導入も実際に試す。
 
-Webガイドは `bun run deploy` でCloudflare Workersへ配備する。Worker名は `japanese-web-design`、公開先は `japanese-design.sakimyto.com`。アカウントは `wrangler.jsonc` のnandaronaに固定する。
+Webガイドは `bun run deploy` でCloudflare Workersへ配備する。Worker名は `japanese-web-design`、公開先は `https://sakimyto.com/japanese-web-design/`。旧ホスト `japanese-design.sakimyto.com` は同じWorkerが受け、新しいURLへ301で転送する。公開元・パス・旧ホストは `site.config.json`、経路は `wrangler.jsonc` に置く。設計と対応表は [ガイドを sakimyto.com の下で配信する](serve-under-sakimyto-com-20261120.md)。アカウントは `wrangler.jsonc` のnandaronaに固定する。
 
 2026-11-08の環境では、cf CLIに認証がなく、既存のWrangler OAuthでは対象アカウントへの接続を確認できた。新しいログインや認証情報の移し替えを行わず、Wrangler 4.158.0を固定して使う。cloudflare.config.tsを使うcfへの移行は、認証と静的ビルドの連携を別途確認してから行う。
 
-公開後は、トップ、AI向け資料（`/for-ai/`）、人が読むガイドへの戻り先、CSS・JS、カタログ、ZIP、照合ファイル、存在しないURLの404、セキュリティヘッダー、実験への戻りリンクを読み戻す。sakimyto.comのラボ登録とSEO生成は、そのrepositoryの必須CI・配備手順で公開する。
+公開後は、`/japanese-web-design/` の下のトップ、AI向け資料（`for-ai/`）、人が読むガイドへの戻り先、CSS・JS、カタログ、ZIP、照合ファイル、存在しないURLの404、セキュリティヘッダー、実験への戻りリンクを読み戻す。旧ホストは、対応表の各パスが301になり、`robots.txt` が200になることを読み戻す。sakimyto.comのラボ登録とSEO生成は、そのrepositoryの必須CI・配備手順で公開する。
 
 ## 復旧
 
