@@ -102,7 +102,13 @@ Wrangler 4.158.0 の `dev --local` を、ホストを切り替えて2回起動�
 | `/robots.txt` | 200 |
 | そのほかのパス | 301 で同じパスを続けた先へ。末尾のスラッシュは落とす |
 
-Workerの経路は旧ホストだけにし、`sakimyto.com/japanese-web-design*` を外す。この経路が残っている間は、アプリより先にこのWorkerが要求を受ける。`wrangler deploy` が設定から消えた経路を外すかは確かめていないので、配備後に本番で読み戻し、残っていればCloudflareの画面かAPIで外す。経路が残った場合に転送が循環しないよう、旧ホスト以外への要求は転送せず、そのまま先へ渡す（`fetch(request)`）。この受け渡しがアプリへ届くかは本番で確かめていない。
+Workerの経路は旧ホストだけにし、`sakimyto.com/japanese-web-design*` を外す。この経路が残っている間は、アプリより先にこのWorkerが要求を受ける。経路が残った場合に転送が循環しないよう、旧ホスト以外への要求は転送せず、そのまま先へ渡す（`fetch(request)`）。
+
+2026-11-20 の配備（版 `9c57b18f`）で確かめたこと。
+
+- `wrangler deploy` は経路を外さなかった。設定にゾーンの経路が1本もないと、Wrangler 4.158.0 は経路の更新を行わず、前の経路が残る。配備の出力には旧ホストだけが表示されるので、出力からは残っていることが分からない。`wrangler tail` で、`sakimyto.com/japanese-web-design` への要求がこのWorkerを呼んでいることを確かめた。
+- 受け渡しは働いた。経路が残った状態でも、新しいURLはアプリのページ（64項目、アプリのヘッダー）を返し、旧ホストは全パスが1回の301で届いた。
+- 残った経路は、Cloudflareの画面（Workers & Pages → `japanese-web-design` → Settings → Domains & Routes）で `sakimyto.com/japanese-web-design*` を消す。消した後も表示は変わらない。消すまでは、ガイドへの要求のたびにこのWorkerが1回呼ばれる。
 
 公開の順序は、アプリを先に配備し、次にこのWorkerを配備する。逆にすると、新しいパスが一時的に404になる。戻すときは、このrepositoryを取り込み前のcommitへ戻して再配備する。Workerの版だけを戻しても、経路は戻らないことがある。
 
