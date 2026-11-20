@@ -41,12 +41,17 @@ function boundaryUrls(origin) {
 
 function assertLegacyContract(respond) {
   for (const [path, location] of Object.entries(livePaths)) {
-    assert.deepEqual(respond(new URL(`${legacy}${path}`)), { status: 301, location }, path)
+    assert.deepEqual(
+      respond(new URL(`${legacy}${path}`)),
+      { status: 301, location },
+      `Legacy path has its destination: ${path}`,
+    )
   }
-  assert.deepEqual(respond(new URL(`${legacy}/?q=IME#T04`)), {
-    status: 301,
-    location: `${primary}/?q=IME`,
-  })
+  assert.deepEqual(
+    respond(new URL(`${legacy}/?q=IME#T04`)),
+    { status: 301, location: `${primary}/?q=IME` },
+    'Query is kept and the fragment is dropped',
+  )
   assert.equal(respond(new URL(`${legacy}/robots.txt`)).status, 200)
   assert.equal(
     respond(new URL(`${legacy}${config.basePath}/for-ai/`)).location,
@@ -96,10 +101,10 @@ test('broken mappers are rejected by the same contract', () => {
       : legacyResponse(url)
   // Each variant must fail at the check that names its defect, not at an unrelated one.
   for (const [broken, reason] of [
-    [dropsPrefix, '/'],
+    [dropsPrefix, 'Legacy path has its destination: /'],
     [redirectsEveryHost, `Primary host is never redirected: ${config.origin}//`],
-    [forgetsRetiredRelease, '/japanese-web-design-1.0.0.zip'],
-    [dropsQuery, 'Expected values to be strictly deep-equal:'],
+    [forgetsRetiredRelease, 'Legacy path has its destination: /japanese-web-design-1.0.0.zip'],
+    [dropsQuery, 'Query is kept and the fragment is dropped'],
     [doublesPrefix, 'Already prefixed paths keep one prefix'],
   ]) {
     assert.throws(
