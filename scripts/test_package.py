@@ -17,6 +17,15 @@ class CatalogTests(unittest.TestCase):
     def setUp(self):
         self.data = PACKAGE.load_catalog()
 
+    def test_released_archive_keeps_its_published_hash(self):
+        import hashlib
+        import json
+        evidence = json.loads((PACKAGE.ROOT / 'docs' / 'release-evidence.json').read_text())
+        published = {item['sha256'] for item in evidence['deployment']['results'] if 'sha256' in item}
+        self.assertEqual(len(published), 1)
+        self.assertEqual(evidence['version'], self.data['version'], 'Record the evidence of a new release')
+        self.assertEqual({hashlib.sha256(PACKAGE.archive(self.data)).hexdigest()}, published)
+
     def test_every_rule_has_valid_sources(self):
         self.assertIs(PACKAGE.validate(self.data), self.data)
         for section in self.data['sections']:

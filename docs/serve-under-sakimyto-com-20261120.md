@@ -85,3 +85,24 @@ Wrangler 4.158.0 の `dev --local` を、ホストを切り替えて2回起動�
 - ブラウザ: 新しいパスでスタイルと検索が動く（64項目、「IME」で2件）。コンソールのエラーなし。
 
 テストは Python 24件、Node 6件。旧ホストの転送は392通りの境界入力と、壊した5つの変種で確かめた。各変種は、その欠陥を名指しする検査のメッセージで落ちることまで照合する。
+
+## 本体アプリへの取り込み（同じ日の続き）
+
+本人の追加の指示「デザインもかえて本体とおなじものでいいよ」で、ガイドを sakimyto.com のアプリのページとして作り直した。上の「決めたこと」の3つ目（ガイド固有の見た目を保つ）はなくなり、静的ガイドの生成（`site/`、`scripts/build_site.py`）はこのrepositoryから消した。アプリ側の設計は、nandarona-inc/sakimytocom の `docs/design/japanese-web-design-in-app-20261120.md` にある。
+
+このrepositoryに残るのは、スキル、カタログ、ZIPの生成と、旧ホストの転送である。
+
+| 旧URL（japanese-design.sakimyto.com） | 応答 |
+| --- | --- |
+| `/` | 301 で `https://sakimyto.com/japanese-web-design` へ（アプリの正規のURLは末尾スラッシュなし） |
+| `/for-ai/`、`/for-ai` | 301 で `…/japanese-web-design/for-ai` へ |
+| `/llms.txt`、`/catalog.json` | 301 で同じ名前のファイルへ |
+| ZIPと照合ファイル（全ての版） | 301 で、その版の GitHub Release のファイルへ |
+| `/style.css`、`/app.js`、`/sitemap.xml` | 301 でガイドのページへ（静的版だけが使っていた） |
+| `/robots.txt` | 200 |
+| そのほかのパス | 301 で同じパスを続けた先へ。末尾のスラッシュは落とす |
+
+Workerの経路は旧ホストだけにし、`sakimyto.com/japanese-web-design*` を外す。この経路が残っている間は、アプリより先にこのWorkerが要求を受ける。`wrangler deploy` が設定から消えた経路を外すかは確かめていないので、配備後に本番で読み戻し、残っていればCloudflareの画面かAPIで外す。経路が残った場合に転送が循環しないよう、旧ホスト以外への要求は転送せず、そのまま先へ渡す（`fetch(request)`）。この受け渡しがアプリへ届くかは本番で確かめていない。
+
+公開の順序は、アプリを先に配備し、次にこのWorkerを配備する。逆にすると、新しいパスが一時的に404になる。戻すときは、このrepositoryを取り込み前のcommitへ戻して再配備する。Workerの版だけを戻しても、経路は戻らないことがある。
+

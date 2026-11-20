@@ -18,11 +18,11 @@ jobs:
           node-version: '26.12.1'
       - name: Check generated references and skill package
         run: python3 scripts/package.py check
-      - name: Test data, package, HTML and broken variants
+      - name: Test data, package and broken variants
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - name: Test search intersection and boundary inputs
+      - name: Test the legacy host redirects
         run: node --test scripts/*.test.mjs
-      - name: Build public site and ZIP
-        run: python3 scripts/build_site.py
+      - name: Build the skill ZIP
+        run: python3 scripts/package.py pack
       - name: Check JSON and JavaScript
         run: npx --yes @biomejs/biome@2.4.15 check .
