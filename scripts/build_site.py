@@ -8,7 +8,11 @@ from pathlib import Path
 
 from package import KINDS, ROOT, archive, load_catalog
 
-ORIGIN = 'https://japanese-design.sakimyto.com'
+CONFIG = json.loads((ROOT / 'site.config.json').read_text(encoding='utf-8'))
+ORIGIN = CONFIG['origin']
+BASE_PATH = CONFIG['basePath']
+LEGACY_HOST = CONFIG['legacyHost']
+SITE = ORIGIN + BASE_PATH
 REPOSITORY = 'https://github.com/sakimyto/japanese-web-design'
 
 
@@ -30,7 +34,9 @@ def rule_html(rule, section, sources):
 def build(output=None):
     data = load_catalog()
     output = Path(output) if output else ROOT / 'dist' / 'site'
-    output.mkdir(parents=True, exist_ok=True)
+    # A deploy uploads the whole folder, so files from an earlier build must not survive.
+    shutil.rmtree(output, ignore_errors=True)
+    output.mkdir(parents=True)
     sources = {source['id']: source for source in data['sources']}
     rules = [rule for section in data['sections'] for rule in section['rules']]
     categories = '<button type="button" class="filter active" data-category="all" aria-pressed="true">すべて</button>'
@@ -39,7 +45,7 @@ def build(output=None):
     install = install_command(data['version'])
     jsonld = json.dumps({
         '@context': 'https://schema.org', '@type': 'CreativeWork',
-        'name': '日本語Webデザイン補助', 'url': ORIGIN + '/', 'inLanguage': 'ja',
+        'name': '日本語Webデザイン補助', 'url': SITE + '/', 'inLanguage': 'ja',
         'version': data['version'], 'license': 'https://opensource.org/license/mit',
         'creator': {'@type': 'Person', '@id': 'https://sakimyto.com/#person'},
         'isPartOf': 'https://sakimyto.com/lab/japanese-web-design',
@@ -47,7 +53,7 @@ def build(output=None):
         'description': '既存のデザインスキルに重ねて使う、日本語の組版とUIのための補助スキルと出典付きガイド。',
     }, ensure_ascii=False).replace('<', '\\u003c')
     template = (ROOT / 'site' / 'index.html').read_text(encoding='utf-8')
-    replacements = {'VERSION': data['version'], 'RULE_COUNT': str(len(rules)), 'SOURCE_COUNT': str(len(sources)),
+    replacements = {'SITE': SITE, 'BASE': BASE_PATH, 'VERSION': data['version'], 'RULE_COUNT': str(len(rules)), 'SOURCE_COUNT': str(len(sources)),
                     'CATEGORIES': categories, 'RULES': body, 'INSTALL': html.escape(install), 'JSONLD': jsonld,
                     'SPEC_COUNT': str(sum(rule['kind'] == 'specification' for rule in rules)),
                     'PRACTICE_COUNT': str(sum(rule['kind'] == 'practice' for rule in rules)),
@@ -76,18 +82,17 @@ def build(output=None):
 日本語の組版とUIを、既存のデザイン方針に合わせて調整する補助スキル。
 技術仕様、公開実践、編集上の仮説を区別する。企業固有の数値を一律に強制しない。
 
-- [AI向け資料]({ORIGIN}/for-ai/): 適用条件、スキル、カタログの入口。
+- [AI向け資料]({SITE}/for-ai/): 適用条件、スキル、カタログの入口。
 - [スキル]({REPOSITORY}/blob/v{data['version']}/skills/japanese-web-design/SKILL.md)
-- [カタログ]({ORIGIN}/catalog.json): 条件、根拠、例外、確認方法を持つ{len(rules)}項目。
+- [カタログ]({SITE}/catalog.json): 条件、根拠、例外、確認方法を持つ{len(rules)}項目。
 - [導入と使い方]({REPOSITORY}#readme)
 - [実験の記録](https://sakimyto.com/lab/japanese-web-design)
 
 生成結果の美的な改善率、CVR向上、全環境での表示・IME対応は保証していない。
 ''', encoding='utf-8')
-    (output / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
-    (output / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{ORIGIN}/</loc></url><url><loc>{ORIGIN}/for-ai/</loc></url></urlset>\n')
-    (output / '404.html').write_text('<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ページが見つかりません</title><h1>ページが見つかりません</h1><a href="/">ガイドに戻る</a></html>')
-    (output / '_headers').write_text("""/*
+    (output / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{SITE}/</loc></url><url><loc>{SITE}/for-ai/</loc></url></urlset>\n')
+    (output / '404.html').write_text('<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ページが見つかりません</title><h1>ページが見つかりません</h1><a href="' + BASE_PATH + '/">ガイドに戻る</a></html>')
+    (output / '_headers').write_text(BASE_PATH + """/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY

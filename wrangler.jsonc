@@ -3,11 +3,16 @@
   "account_id": "da4df285476cff0b942707a93dcb1954",
   "compatibility_date": "2026-11-08",
   "workers_dev": false,
+  "main": "worker/index.js",
   "assets": {
     "directory": "./dist/site",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "base_path": "/japanese-web-design",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/*", "!/japanese-web-design/*"]
   },
   "routes": [
+    { "pattern": "sakimyto.com/japanese-web-design*", "zone_name": "sakimyto.com" },
     { "pattern": "japanese-design.sakimyto.com", "custom_domain": true }
   ]
 }
