@@ -20,8 +20,6 @@ jobs:
         run: python3 scripts/package.py check
       - name: Test data, package and broken variants
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - name: Test the legacy host redirects
-        run: node --test scripts/*.test.mjs
       - name: Build the skill ZIP
         run: python3 scripts/package.py pack
       - name: Check JSON and JavaScript

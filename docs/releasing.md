@@ -14,11 +14,9 @@
 
 `python3 scripts/package.py pack` でZIPとSHA-256を生成する。検証済みcommitにタグを付け、GitHub ReleaseへZIPと照合ファイルを添付する。公開後に匿名で取得し、ローカルのZIPとSHA-256を比較する。タグを指定したCLI導入も実際に試す。
 
-Webガイドは sakimyto.com のアプリ（nandarona-inc/sakimytocom）にある。新しい版をリリースしたら、そのタグの `catalog.json` をアプリの `public/japanese-web-design/catalog.json` へ取り込み、アプリ側のテストが持つSHA-256を同じ変更で更新する。このrepositoryのWorker `japanese-web-design` は、旧ホスト `japanese-design.sakimyto.com` の要求を新しいURLへ301で転送するだけである。転送の対応を変えたときだけ `bun run deploy` で配備する。設計は [ガイドを sakimyto.com の下で配信する](serve-under-sakimyto-com-20261120.md) の「本体アプリへの取り込み」。アカウントは `wrangler.jsonc` のnandaronaに固定する。
+Webガイドと旧ホスト `japanese-design.sakimyto.com` の転送は sakimyto.com の本体アプリ（nandarona-inc/sakimytocom、Worker `sakimyto-dev`）にある。新しい版をリリースしたら、そのタグの `catalog.json` をアプリの `public/japanese-web-design/catalog.json` へ取り込み、アプリ側のテストが持つSHA-256を同じ変更で更新する。このrepositoryからCloudflare Workerを配備することはない（旧Worker設定は2026-11-25に廃止。緊急ロールバックが必要な場合のみ commit `891bc49` から `wrangler.jsonc` と `worker/index.js` を復元する）。設計は [ガイドを sakimyto.com の下で配信する](serve-under-sakimyto-com-20261120.md) の「本体アプリへの取り込み」。
 
-2026-11-08の環境では、cf CLIに認証がなく、既存のWrangler OAuthでは対象アカウントへの接続を確認できた。新しいログインや認証情報の移し替えを行わず、Wrangler 4.158.0を固定して使う。cloudflare.config.tsを使うcfへの移行は、認証と静的ビルドの連携を別途確認してから行う。
-
-Workerを配備したら、旧ホストの各パスが1回の301で届き、`robots.txt` が200になることを読み戻す。ガイドの表示は、アプリのrepositoryの必須CI・配備手順で公開し、`https://sakimyto.com/japanese-web-design` を読み戻す。
+旧ホストの転送とガイドの表示は、アプリ側repositoryのCIと配備後の `node scripts/verify-legacy-japanese-design.mjs --live --check-owner` で読み戻す。
 
 ## 復旧
 
